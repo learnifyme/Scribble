@@ -1,5 +1,7 @@
 // AGE SLIDER
-ageInput.oninput = () => ageValue.innerText = ageInput.value;
+ageInput.oninput = () => {
+  ageValue.innerText = ageInput.value;
+};
 
 let userName = "";
 let userAge = "";
@@ -11,6 +13,25 @@ const quotes = [
   "Curiosity is the key to innovation."
 ];
 
+// AUTO LOGIN CHECK
+window.onload = function () {
+  if (localStorage.getItem("loggedIn") === "true") {
+    loginPage.classList.add("hidden");
+    homePage.classList.remove("hidden");
+
+    const name = localStorage.getItem("userName");
+    const age = localStorage.getItem("userAge");
+
+    profileBox.innerHTML = `
+      <b>${name}</b><br>
+      Age: ${age}<br>
+      <button onclick="logout()">Logout</button>
+    `;
+
+    rotateQuotes();
+  }
+};
+
 // LOGIN
 function login() {
   if (nameInput.value === "") {
@@ -21,19 +42,34 @@ function login() {
   userName = nameInput.value;
   userAge = ageInput.value;
 
+  localStorage.setItem("loggedIn", "true");
+  localStorage.setItem("userName", userName);
+  localStorage.setItem("userAge", userAge);
+
   loginPage.classList.add("hidden");
   homePage.classList.remove("hidden");
 
-  profileBox.innerHTML = `<b>${userName}</b><br>Age: ${userAge}`;
+  profileBox.innerHTML = `
+    <b>${userName}</b><br>
+    Age: ${userAge}<br>
+    <button onclick="logout()">Logout</button>
+  `;
+
   rotateQuotes();
 }
 
-// PROFILE
+// LOGOUT
+function logout() {
+  localStorage.clear();
+  location.reload();
+}
+
+// PROFILE TOGGLE
 function toggleProfile() {
   profileBox.classList.toggle("hidden");
 }
 
-// QUOTES
+// QUOTES ROTATION
 let q = 0;
 function rotateQuotes() {
   quoteBox.innerText = quotes[q];
