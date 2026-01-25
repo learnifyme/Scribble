@@ -16,7 +16,26 @@
   align-items: center;
   gap: 15px;
 }
+.cartoon {
+  position: absolute;
+  right: 40px;
+  bottom: 80px;
+  width: 180px;
+  animation: floaty 3s ease-in-out infinite;
+  pointer-events: none;
+}
 
+@keyframes floaty {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .login input, .login button {
   padding: 12px;
   width: 240px;
