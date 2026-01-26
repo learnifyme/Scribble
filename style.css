@@ -20,7 +20,7 @@
   position: absolute;
   right: 40px;
   bottom: 80px;
-  width: 180px;
+  width: 100px;
   animation: floaty 3s ease-in-out infinite;
   pointer-events: none;
 }
