@@ -58,6 +58,14 @@ function login() {
   rotateQuotes();
 }
 
+function showClass(classId) {
+  document.querySelectorAll('.notes-list').forEach(list => {
+    list.classList.add('hidden');
+  });
+
+  document.getElementById(classId).classList.remove('hidden');
+}
+
 // LOGOUT
 function logout() {
   localStorage.clear();
