@@ -62,56 +62,37 @@
   100% { transform: translateY(0); }
 }
 
-/* ================= LOGIN TRANSITION ================= */
 #loginTransition {
   position: fixed;
-  bottom: -120%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 220%;
-  height: 220%;
+  bottom: -60%;
+  width: 140vw;
+  height: 70vw;   /* 👈 IMPORTANT: half height = semicircle */
   background: radial-gradient(
     circle at bottom,
-    #020816 0%,
-    #000000 65%
+    rgba(25, 40, 90, 0.9),
+    #000 70%
   );
-  border-radius: 50% 50% 0 0;
-  z-index: 999;
-  pointer-events: none;
+  border-radius: 100% 100% 0 0; /* 👈 true semicircle */
+  transform: translateX(-50%);
+  z-index: 9999;
+  transition: bottom 1s ease-in-out;
   overflow: visible;
 }
 
-/* OUTSIDE SUN GLOW */
-#loginTransition .sun-glow {
+/* 🌟 OUTSIDE GLOW (SUNSHINE EFFECT) */
+#loginTransition::after {
+  content: "";
   position: absolute;
-  top: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  height: 120px;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 200, 80, 0.9),
-    rgba(255, 200, 80, 0.5),
-    rgba(255, 200, 80, 0.15),
-    transparent 70%
-  );
-  filter: blur(18px);
+  inset: -40px;
+  border-radius: 100% 100% 0 0;
+  box-shadow: 0 0 120px 40px rgba(255, 200, 80, 0.6);
+  pointer-events: none;
 }
 
-/* ACTIVE STATE */
+/* ANIMATION STATE */
 #loginTransition.active {
-  animation: riseBlackSun 1.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
-}
-
-/* ANIMATION */
-@keyframes riseBlackSun {
-  from {
-    bottom: -120%;
-  }
-  to {
-    bottom: -20%;
-  }
+  bottom: 0;
 }
 
 /* HOME PAGE */
