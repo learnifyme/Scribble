@@ -17,23 +17,6 @@
   background: #000;
 }
 
-/* PLANETS */
-#planets .planet {
-  position: absolute;
-  border-radius: 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  opacity: 0.9;
-  pointer-events: none;
-  z-index: -2;
-  animation-name: floatPlanet;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-@keyframes floatPlanet {
-  from { transform: translateX(-150px) rotate(0deg); }
-  to { transform: translateX(110vw) rotate(360deg); }
-}
 
 /* LOGIN PAGE */
 .login {
