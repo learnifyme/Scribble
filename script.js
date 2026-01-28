@@ -63,9 +63,30 @@ function toggleProfile(){
 }
 
 // NAVIGATION
-function openSection(id){
+function openSection(id) {
   homePage.classList.add("hidden");
   document.getElementById(id).classList.remove("hidden");
+
+  // re-trigger class buttons animation
+  document.querySelectorAll(".class-buttons button").forEach(btn => {
+    btn.style.animation = "none";
+    btn.offsetHeight;
+    btn.style.animation = "";
+  });
+}
+// SHOW CLASS NOTES (FIXED)
+function showClass(classId) {
+  document.querySelectorAll('.notes-list').forEach(list => {
+    list.classList.add('hidden');
+  });
+
+  const activeClass = document.getElementById(classId);
+  activeClass.classList.remove('hidden');
+
+  // re-trigger animation
+  activeClass.style.animation = "none";
+  activeClass.offsetHeight;
+  activeClass.style.animation = "";
 }
 function goHome(){
   document.querySelectorAll(".content").forEach(c=>c.classList.add("hidden"));
