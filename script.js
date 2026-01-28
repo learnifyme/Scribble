@@ -35,13 +35,6 @@ function login() {
   localStorage.setItem("loggedIn","true");
   localStorage.setItem("userName",userName);
   localStorage.setItem("userAge",userAge);
-  const transition = document.getElementById("loginTransition");
-  transition.classList.add("active");
-
-  setTimeout(() => {
-    loginPage.classList.add("hidden");
-    homePage.classList.remove("hidden");
-  }, 950);
   loginPage.classList.add("hidden");
   homePage.classList.remove("hidden");
   profileBox.innerHTML = `<b>${userName}</b><br>Age: ${userAge}<br><button onclick="logout()">Logout</button>`;
