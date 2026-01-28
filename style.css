@@ -6,32 +6,15 @@
   font-family: Arial, sans-serif;
 }
 
-/* UNIVERSE BACKGROUND */
+/* 🌌 UNIVERSE BACKGROUND */
 #universe {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at top, #0b1d2a, #000);
-  overflow: hidden;
+  background: radial-gradient(circle at top, #0b1d2a, #000000);
   z-index: -2;
 }
 
-/* STARS */
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.8;
-  animation: moveStar linear infinite;
-}
-
-@keyframes moveStar {
-  from { transform: translateY(0); }
-  to { transform: translateY(100vh); }
-}
-
-/* LOGIN PAGE */
+/* ================= LOGIN PAGE ================= */
 .login {
   height: 100vh;
   background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
@@ -42,6 +25,11 @@
   align-items: center;
   gap: 15px;
   position: relative;
+  overflow: hidden;
+}
+
+.login h1 {
+  font-size: 36px;
 }
 
 .login input,
@@ -53,17 +41,18 @@
 }
 
 .login button {
-  background: #4facfe;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
   color: white;
+  font-weight: bold;
   cursor: pointer;
 }
 
-/* FLOATING CARTOON */
+/* 🧑‍🎨 CARTOON CHARACTER */
 .cartoon {
   position: absolute;
   right: 40px;
   bottom: 80px;
-  width: 120px;
+  width: 110px;
   animation: floaty 3s ease-in-out infinite;
   pointer-events: none;
 }
@@ -74,15 +63,30 @@
   100% { transform: translateY(0); }
 }
 
-/* HOME PAGE */
+/* ================= HOME PAGE ================= */
 .home {
   min-height: 100vh;
-  color: white;
   position: relative;
-  padding-top: 80px;
+  color: white;
+  z-index: 1;
+  background: rgba(20, 30, 60, 0.55); /* transparent overlay */
+  backdrop-filter: blur(2px);
 }
 
-/* ICONS */
+/* Gradient overlay on universe */
+.home::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(102,126,234,0.4),
+    rgba(118,75,162,0.4)
+  );
+  z-index: -1;
+}
+
+/* ================= ICONS ================= */
 .icon {
   position: fixed;
   font-size: 32px;
@@ -100,7 +104,7 @@
   right: 15px;
 }
 
-/* PROFILE BOX */
+/* ================= PROFILE BOX ================= */
 .profile-box {
   position: fixed;
   top: 60px;
@@ -109,8 +113,7 @@
   color: black;
   padding: 12px;
   border-radius: 10px;
-  display: none;
-  z-index: 20;
+  z-index: 10;
 }
 
 .profile-box button {
@@ -123,203 +126,7 @@
   cursor: pointer;
 }
 
-/* QUOTES */
-.quote {
-  text-align: center;
-  font-size: 22px;
-  animation: fade 2s infinite alternate;
-}
-
-@keyframes fade {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
-}
-
-/* MENU */
-.menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 60px;
-}
-
-.vertical-menu {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.menu button {
-  padding: 20px 40px;
-  font-size: 18px;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: white;
-}
-
-/* NOTES / DIAGRAM PAGE */
-.content {
-  min-height: 100vh;
-  background: #f5f5f5;
-  padding: 40px;
-}
-
-.content h2 {
-  margin-bottom: 20px;
-}
-
-.content a {
-  display: block;
-  margin: 12px 0;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #333;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* CLASS BUTTONS */
-.class-buttons {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.class-buttons button {
-  padding: 10px 18px;
-  border-radius: 20px;
-  border: none;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.class-buttons button:hover {
-  transform: scale(1.08);
-}
-
-/* UTIL */
-.hidden {
-  display: none;
-}
-.class-buttons button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.class-buttons button:hover {
-  transform: scale(1.08);
-}
-
-.notes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.notes-list h3 {
-  color: #333;
-}
-
-.notes-list a {
-  padding: 12px;
-  background: white;
-  border-radius: 10px;
-  color: #333;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.cartoon {
-  position: absolute;
-  right: 40px;
-  bottom: 80px;
-  width: 100px;
-  animation: floaty 3s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes floaty {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-25px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-.login input, .login button {
-  padding: 12px;
-  width: 240px;
-  border-radius: 8px;
-  border: none;
-}
-
-/* HOME PAGE */
-.home {
-  height: 100vh;
-  color: white;
-  position: relative;
-}
-
-.hidden {
-  display: none;
-}
-
-/* ICONS */
-.icon {
-  position: fixed;
-  font-size: 32px;
-  cursor: pointer;
-}
-
-.profile {
-  top: 15px;
-  right: 15px;
-}
-
-.chatbot {
-  bottom: 15px;
-  right: 15px;
-}
-
-/* PROFILE BOX */
-.profile-box {
-  position: fixed;
-  top: 60px;
-  right: 15px;
-  background: white;
-  color: black;
-  padding: 12px;
-  border-radius: 10px;
-}
-
-.profile-box button {
-  margin-top: 10px;
-  padding: 6px 10px;
-  background: #ff5c5c;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-/* QUOTE */
+/* ================= QUOTES ================= */
 .quote {
   text-align: center;
   margin-top: 50px;
@@ -327,7 +134,12 @@
   animation: fade 1.5s infinite alternate;
 }
 
-/* MENU */
+@keyframes fade {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* ================= MENU ================= */
 .menu {
   height: 70vh;
   display: flex;
@@ -344,14 +156,56 @@
   padding: 20px 40px;
   font-size: 18px;
   border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  transition: transform 0.3s;
+}
+
+.menu button:hover {
+  transform: scale(1.08);
+}
+
+/* ================= NOTES / DIAGRAMS ================= */
+.class-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.class-buttons button {
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: none;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: white;
+  font-weight: bold;
   cursor: pointer;
 }
 
-/* CONTENT PAGE */
+.notes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notes-list a {
+  padding: 12px;
+  background: white;
+  border-radius: 10px;
+  color: #333;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ================= CONTENT PAGE ================= */
 .content {
   min-height: 100vh;
-  background: #f5f5f5;
   padding: 40px;
+  background: rgba(255,255,255,0.95);
 }
 
 .content a {
@@ -360,7 +214,7 @@
   font-size: 18px;
 }
 
-@keyframes fade {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
+/* ================= UTIL ================= */
+.hidden {
+  display: none;
 }
