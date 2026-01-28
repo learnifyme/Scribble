@@ -29,23 +29,34 @@ function rotateQuotes() {
 
 // LOGIN / LOGOUT
 function login() {
-  if(nameInput.value===""){ alert("Enter your name"); return; }
-  const userName = nameInput.value;
-  const userAge = ageInput.value;
-  localStorage.setItem("loggedIn","true");
-  localStorage.setItem("userName",userName);
-  localStorage.setItem("userAge",userAge);
+  if (nameInput.value === "") {
+    alert("Enter your name");
+    return;
+  }
+
   const transition = document.getElementById("loginTransition");
   transition.classList.add("active");
 
   setTimeout(() => {
+    const userName = nameInput.value;
+    const userAge = ageInput.value;
+
+    localStorage.setItem("loggedIn", "true");
+    localStorage.setItem("userName", userName);
+    localStorage.setItem("userAge", userAge);
+
     loginPage.classList.add("hidden");
     homePage.classList.remove("hidden");
-  }, 950);
-  loginPage.classList.add("hidden");
-  homePage.classList.remove("hidden");
-  profileBox.innerHTML = `<b>${userName}</b><br>Age: ${userAge}<br><button onclick="logout()">Logout</button>`;
-  rotateQuotes();
+
+    profileBox.innerHTML = `
+      <b>${userName}</b><br>
+      Age: ${userAge}<br>
+      <button onclick="logout()">Logout</button>
+    `;
+
+    rotateQuotes();
+  }, 900); // sync with animation
+}
 }
 function logout() {
   localStorage.clear();
