@@ -165,9 +165,9 @@ window.addEventListener("resize",()=>{
 
 // ================= MOVING PLANETS =================
 const planetImages = [
-  "https://i.ibb.co/0F1V4VN/planet1.png",
-  "https://i.ibb.co/Z1qzQjJ/planet2.png",
-  "https://i.ibb.co/bX4Vv9T/planet3.png"
+  "p1.png",
+  "p2.png",
+  "p3.png"
 ];
 for(let i=0;i<5;i++){
   const planet=document.createElement("div");
