@@ -77,7 +77,6 @@
 /* HOME PAGE */
 .home {
   min-height: 100vh;
-  background: linear-gradient(135deg,#667eea,#764ba2);
   color: white;
   position: relative;
   padding-top: 80px;
