@@ -27,7 +27,6 @@ function rotateQuotes() {
   setTimeout(rotateQuotes, 3500);
 }
 
-// LOGIN / LOGOUT
 function login() {
   if (nameInput.value === "") {
     alert("Enter your name");
@@ -55,9 +54,9 @@ function login() {
     `;
 
     rotateQuotes();
-  }, 900); // sync with animation
+  }, 900);
 }
-}
+
 function logout() {
   localStorage.clear();
   location.reload();
