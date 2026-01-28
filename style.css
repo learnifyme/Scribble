@@ -62,6 +62,58 @@
   100% { transform: translateY(0); }
 }
 
+/* ================= LOGIN TRANSITION ================= */
+#loginTransition {
+  position: fixed;
+  bottom: -120%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220%;
+  height: 220%;
+  background: radial-gradient(
+    circle at bottom,
+    #020816 0%,
+    #000000 65%
+  );
+  border-radius: 50% 50% 0 0;
+  z-index: 999;
+  pointer-events: none;
+  overflow: visible;
+}
+
+/* OUTSIDE SUN GLOW */
+#loginTransition .sun-glow {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 120px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 200, 80, 0.9),
+    rgba(255, 200, 80, 0.5),
+    rgba(255, 200, 80, 0.15),
+    transparent 70%
+  );
+  filter: blur(18px);
+}
+
+/* ACTIVE STATE */
+#loginTransition.active {
+  animation: riseBlackSun 1.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+/* ANIMATION */
+@keyframes riseBlackSun {
+  from {
+    bottom: -120%;
+  }
+  to {
+    bottom: -20%;
+  }
+}
+
 /* HOME PAGE */
 .home {
   min-height: 100vh;
