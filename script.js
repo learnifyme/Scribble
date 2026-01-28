@@ -77,6 +77,82 @@ function toggleProfile() {
   profileBox.classList.toggle("hidden");
 }
 
+const canvas = document.getElementById("universe");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+const STAR_COUNT = 100;
+const MAX_DISTANCE = 120;
+
+// Create stars
+for (let i = 0; i < STAR_COUNT; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    radius: Math.random() * 1.5 + 0.5
+  });
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(star => {
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  });
+}
+
+function drawLines() {
+  for (let i = 0; i < stars.length; i++) {
+    for (let j = i + 1; j < stars.length; j++) {
+      let dx = stars[i].x - stars[j].x;
+      let dy = stars[i].y - stars[j].y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < MAX_DISTANCE) {
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(255,255,255,${1 - distance / MAX_DISTANCE})`;
+        ctx.lineWidth = 0.5;
+        ctx.moveTo(stars[i].x, stars[i].y);
+        ctx.lineTo(stars[j].x, stars[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function updateStars() {
+  stars.forEach(star => {
+    star.x += star.vx;
+    star.y += star.vy;
+
+    if (star.x < 0 || star.x > canvas.width) star.vx *= -1;
+    if (star.y < 0 || star.y > canvas.height) star.vy *= -1;
+  });
+}
+
+function animate() {
+  drawStars();
+  drawLines();
+  updateStars();
+  requestAnimationFrame(animate);
+}
+
+animate();
+
+// Resize support
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
 // QUOTES ROTATION
 let q = 0;
 function rotateQuotes() {
