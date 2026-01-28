@@ -163,20 +163,3 @@ window.addEventListener("resize",()=>{
   canvas.height=window.innerHeight;
 });
 
-// ================= MOVING PLANETS =================
-const planetImages = [
-  "p1.png",
-  "p2.png",
-  "p3.png"
-];
-for(let i=0;i<5;i++){
-  const planet=document.createElement("div");
-  planet.className="planet";
-  const size=40+Math.random()*60;
-  planet.style.width=size+"px";
-  planet.style.height=size+"px";
-  planet.style.top=Math.random()*80+"vh";
-  planet.style.backgroundImage="url('"+planetImages[Math.floor(Math.random()*planetImages.length)]+"')";
-  planet.style.animationDuration=20+Math.random()*30+"s";
-  planetsContainer.appendChild(planet);
-}
