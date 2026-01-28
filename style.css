@@ -67,7 +67,7 @@
   left: 50%;
   bottom: -60vh;              /* start hidden */
   width: 180vw;
-  height: 55vh;
+  height: 35vh;
   background: radial-gradient(
     ellipse at bottom,
     rgba(18, 30, 75, 0.9),
