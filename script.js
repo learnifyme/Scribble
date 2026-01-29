@@ -33,8 +33,8 @@ function login() {
     return;
   }
 
-  const transition = document.getElementById("loginTransition");
-  transition.classList.add("active");
+  const loader = document.getElementById("blackHoleLoader");
+  loader.classList.remove("hidden");
 
   setTimeout(() => {
     const userName = nameInput.value;
@@ -53,10 +53,10 @@ function login() {
       <button onclick="logout()">Logout</button>
     `;
 
+    loader.classList.add("hidden"); // remove loader
     rotateQuotes();
-  }, 900);
+  }, 2800); // matches animation time
 }
-
 function logout() {
   localStorage.clear();
   location.reload();
