@@ -134,6 +134,71 @@
   opacity: 1;
 }
 
+/* FULLSCREEN LOADER */
+#blackHoleLoader {
+  position: fixed;
+  inset: 0;
+  background: #050505;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* CONTAINER */
+.black-hole {
+  position: absolute;
+  top: 50%;
+  left: -30%;
+  transform: translateY(-50%);
+  animation: moveHole 2.8s ease-in-out forwards;
+}
+
+/* GLOWING RING */
+.ring {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 6px solid rgba(255,255,255,0.9);
+  box-shadow:
+    0 0 30px rgba(255,255,255,0.9),
+    0 0 80px rgba(255,255,255,0.6);
+}
+
+/* HORIZONTAL LIGHT BEAM */
+.beam {
+  position: absolute;
+  top: 50%;
+  left: -220px;
+  width: 600px;
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    white,
+    transparent
+  );
+  transform: translateY(-50%);
+  box-shadow: 0 0 40px rgba(255,255,255,0.9);
+}
+
+/* MOVE LEFT → CENTER → RIGHT */
+@keyframes moveHole {
+  0% {
+    left: -30%;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    left: 120%;
+    opacity: 0;
+  }
+}
+
 /* HOME PAGE */
 .home {
   min-height: 100vh;
