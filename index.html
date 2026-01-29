@@ -46,6 +46,7 @@
   <div class="menu vertical-menu">
     <button onclick="openSection('notes')">📘 Notes</button>
     <button onclick="openSection('diagrams')">📐 Diagrams</button>
+    <button onclick="openSection('papers')">Practice Papers</button>
   </div>
 
   <!-- CHATBOT ICON -->
@@ -127,6 +128,44 @@
   <button onclick="goHome()">⬅ Back</button>
 </div>
 
+  <div id="papers" class="content hidden">
+
+  <h2>📄 Practice Papers</h2>
+
+  <!-- CLASS BUTTONS -->
+  <div class="class-buttons">
+    <button onclick="showClass('papers9')">Class 9</button>
+    <button onclick="showClass('papers10')">Class 10</button>
+    <button onclick="showClass('papers11')">Class 11</button>
+    <button onclick="showClass('papers12')">Class 12</button>
+  </div>
+
+  <!-- PAPERS LIST -->
+
+  <div id="papers9" class="notes-list hidden">
+    <a href="#">Class 9 – Maths Practice Paper</a>
+    <a href="#">Class 9 – Science Practice Paper</a>
+  </div>
+
+  <div id="papers10" class="notes-list hidden">
+    <a href="#">Class 10 – Maths Board Paper</a>
+    <a href="#">Class 10 – Science Sample Paper</a>
+  </div>
+
+  <div id="papers11" class="notes-list hidden">
+    <a href="#">Class 11 – Physics Practice Set</a>
+    <a href="#">Class 11 – Maths Practice Paper</a>
+  </div>
+
+  <div id="papers12" class="notes-list hidden">
+    <a href="#">Class 12 – Physics Board Paper</a>
+    <a href="#">Class 12 – Maths Sample Paper</a>
+  </div>
+
+  <br>
+  <button onclick="goHome()">⬅ Back to Home</button>
+
+  </div>
 
 <script src="script.js"></script>
 <!-- LOGIN TRANSITION -->
