@@ -135,6 +135,7 @@
 }
 
 /* FULLSCREEN LOADER */
+/* LOADER SCREEN */
 #blackHoleLoader {
   position: fixed;
   inset: 0;
@@ -143,52 +144,61 @@
   overflow: hidden;
 }
 
-/* CONTAINER */
+/* BLACK HOLE HOLDER */
 .black-hole {
   position: absolute;
   top: 50%;
   left: -30%;
   transform: translateY(-50%);
-  animation: moveHole 2.8s ease-in-out forwards;
+  animation: moveHole 3s ease-in-out forwards;
 }
 
-/* GLOWING RING */
+/* COMMON RING STYLE */
 .ring {
-  width: 160px;
-  height: 160px;
+  position: absolute;
   border-radius: 50%;
-  border: 6px solid rgba(255,255,255,0.9);
+  border: 5px solid rgba(255,255,255,0.95);
   box-shadow:
-    0 0 30px rgba(255,255,255,0.9),
-    0 0 80px rgba(255,255,255,0.6);
+    0 0 25px rgba(255,255,255,0.9),
+    0 0 70px rgba(255,255,255,0.6);
 }
 
-/* HORIZONTAL LIGHT BEAM */
+/* OUTER RING */
+.ring.outer {
+  width: 170px;
+  height: 170px;
+  animation: spin 6s linear infinite;
+}
+
+/* INNER RING */
+.ring.inner {
+  width: 90px;
+  height: 90px;
+  top: 40px;
+  left: 40px;
+  opacity: 0.85;
+  animation: spinReverse 4s linear infinite;
+}
+
+/* LIGHT BEAM */
 .beam {
   position: absolute;
   top: 50%;
-  left: -220px;
-  width: 600px;
+  left: -250px;
+  width: 650px;
   height: 6px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    white,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, white, transparent);
   transform: translateY(-50%);
-  box-shadow: 0 0 40px rgba(255,255,255,0.9);
+  box-shadow: 0 0 45px rgba(255,255,255,0.9);
 }
 
-/* MOVE LEFT → CENTER → RIGHT */
+/* MOVEMENT */
 @keyframes moveHole {
   0% {
     left: -30%;
     opacity: 0;
   }
-  20% {
-    opacity: 1;
-  }
+  20% { opacity: 1; }
   50% {
     left: 50%;
     transform: translate(-50%, -50%);
@@ -197,6 +207,16 @@
     left: 120%;
     opacity: 0;
   }
+}
+
+/* RING ROTATIONS */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
 }
 
 /* HOME PAGE */
