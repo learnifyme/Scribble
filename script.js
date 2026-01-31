@@ -182,10 +182,3 @@ window.addEventListener("resize",()=>{
 });
 
 const loader = document.getElementById("blackHoleLoader");
-
-// Show loader when page loads
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    loader.style.display = "none";
-  }, 3000); // match animation duration
-});
