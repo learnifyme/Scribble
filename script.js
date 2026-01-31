@@ -34,7 +34,7 @@ function login() {
   }
 
   const loader = document.getElementById("blackHoleLoader");
-  loader.classList.remove("hidden");
+  loader.classList.remove("hidden"); // SHOW loader
 
   setTimeout(() => {
     const userName = nameInput.value;
@@ -53,9 +53,10 @@ function login() {
       <button onclick="logout()">Logout</button>
     `;
 
-    loader.classList.add("hidden"); // remove loader
+    loader.classList.add("hidden"); // HIDE loader
     rotateQuotes();
-  }, 2800); // matches animation time
+  }, 2800); // matches animation
+}
 }
 function logout() {
   localStorage.clear();
