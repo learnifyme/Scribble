@@ -97,7 +97,8 @@
 #loginTransition.active {
   bottom: 0;
   opacity: 1;
-}#loginTransition {
+}
+#loginTransition {
   position: fixed;
   left: 50%;
   bottom: -60vh;              /* start hidden */
