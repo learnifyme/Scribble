@@ -1,176 +1,219 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <title>Learning Portal</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-<!-- BLACK HOLE LOADER -->
-<div id="blackHoleLoader" class="hidden">
-  <div class="black-hole">
-    <div class="ring outer"></div>
-    <div class="ring inner"></div>
-    <div class="beam"></div>
-  </div>
-</div>
+
 <canvas id="universe"></canvas>
 
 <!-- LOGIN PAGE -->
+
 <div class="login" id="loginPage">
-  <img src="cartoon1.png" class="cartoon" alt="Cartoon Character">
+
+  <div id="bubble"></div>
+
   <h1>Welcome</h1>
 
   <input type="text" id="nameInput" placeholder="Your Name">
 
   <label>Age: <span id="ageValue">18</span></label>
+
   <input type="range" min="1" max="100" value="18" id="ageInput">
 
   <button onclick="login()">Enter</button>
+
 </div>
 
 <!-- HOME PAGE -->
 
 <div class="home hidden" id="homePage">
-  <img src="cartoon2.png" class="cartoon" alt="Cartoon Character">
 
-  <!-- PROFILE ICON -->
   <div class="icon profile" onclick="toggleProfile()">👤</div>
+
   <div class="profile-box hidden" id="profileBox"></div>
 
-  <!-- QUOTES -->
   <div class="quote" id="quoteBox"></div>
 
-  <!-- MENU (VERTICAL) -->
   <div class="menu vertical-menu">
+
     <button onclick="openSection('notes')">📘 Notes</button>
+
     <button onclick="openSection('diagrams')">📐 Diagrams</button>
-    <button onclick="openSection('papers')">Practice Papers</button>
+
+    <button onclick="openSection('papers')">📄 Practice Papers</button>
+
   </div>
 
-  <!-- CHATBOT ICON -->
-  <div class="icon chatbot">🤖</div>
 </div>
 
-<!-- NOTES PAGE -->
+<!-- NOTES -->
+
 <div class="content hidden" id="notes">
-  <h2>📘 Notes</h2>
 
-  <!-- CLASS BUTTONS -->
-  <div class="class-buttons">
-    <button onclick="showClass('class9')">Class 9</button>
-    <button onclick="showClass('class10')">Class 10</button>
-    <button onclick="showClass('class11')">Class 11</button>
-    <button onclick="showClass('class12')">Class 12</button>
-  </div>
+<h2>📘 Notes</h2>
 
-  <!-- CLASS 9 -->
-  <div class="notes-list hidden" id="class9">
-    <h3>Class 9 Notes</h3>
-    <a href="PDF_LINK" target="_blank">very soon it will be available</a>
-    <a href="PDF_LINK" target="_blank">very soon it will be available</a>
-  </div>
+<div class="class-buttons">
 
-  <!-- CLASS 10 -->
-  <div class="notes-list hidden" id="class10">
-    <h3>Class 10 Notes</h3>
-    <a href="PDF_LINK" target="_blank">very soon it will be available</a>
-    <a href="PDF_LINK" target="_blank">very soon it will be available</a>
-  </div>
+  <button onclick="showClass('class9')">Class 9</button>
 
-  <!-- CLASS 11 -->
-  <div class="notes-list hidden" id="class11">
-    <h3>Class 11 Notes</h3>
-    <a href="https://drive.google.com/file/d/1SKQ2dN2ja_yQxJtIfFHlhOsVNWUzgGgW/view?usp=drivesdk" target="_blank">
+  <button onclick="showClass('class10')">Class 10</button>
+
+  <button onclick="showClass('class11')">Class 11</button>
+
+  <button onclick="showClass('class12')">Class 12</button>
+
+</div>
+
+<div id="class9" class="notes-list hidden">
+
+  <h3>Class 9 Notes</h3>
+
+  <a href="#">very soon it will be available</a>
+
+  <a href="#">very soon it will be available</a>
+
+</div>
+
+<div id="class10" class="notes-list hidden">
+
+  <h3>Class 10 Notes</h3>
+
+  <a href="#">very soon it will be available</a>
+
+  <a href="#">very soon it will be available</a>
+
+</div>
+
+<div id="class11" class="notes-list hidden">
+
+  <h3>Class 11 Notes</h3>
+
+  <a href="https://drive.google.com/file/d/1SKQ2dN2ja_yQxJtIfFHlhOsVNWUzgGgW/view?usp=drivesdk" target="_blank">
+
     Thermodynamics mind map
+
   </a>
 
   <a href="https://drive.google.com/file/d/1zah9Errdk-s64R-wVvA7sz6Avpr2X4-R/view?usp=drivesdk" target="_blank">
+
     Redox reactions mind map
+
   </a>
+
   <a href="https://drive.google.com/file/d/1WEElCNmVCkPfdRm6rlpeOBQh-0Ic-BZ7/view?usp=drivesdk" target="_blank">
-    NEWTONS LAWS OF MOTION 
+
+    NEWTONS LAWS OF MOTION
+
   </a>
-  </div>
 
-  <!-- CLASS 12 -->
-  <div class="notes-list hidden" id="class12">
-    <h3>Class 12 Notes</h3>
-    <a href="PDF_LINK" target="_blank">very soon it will be available</a>
-    <a href="PDF_LINK" target="_blank">very soon it will be available</a>
-  </div>
-
-  <button onclick="goHome()">⬅ Back</button>
 </div>
-<!-- DIAGRAMS PAGE -->
+
+<div id="class12" class="notes-list hidden">
+
+  <h3>Class 12 Notes</h3>
+
+  <a href="#">very soon it will be available</a>
+
+  <a href="#">very soon it will be available</a>
+
+</div>
+
+<button onclick="goHome()">⬅ Back</button>
+
+</div>
+
+<!-- DIAGRAMS -->
+
 <div class="content hidden" id="diagrams">
-  <h2>📐 Diagrams</h2>
 
-  
-  <a href="https://drive.google.com/file/d/1jLbbNwItrxLx6FMST1hlAFTxN5ly_rYE/view?usp=drivesdk" target="_blank">
-    Eukaryotic cell
-  </a>
-  <a href="https://drive.google.com/file/d/1KtpR8uuZbd_kVf92fopYGNWsJkKOTbm0/view" target="_blank">
-    Human Skeleton
-  </a>
-  <a href="https://drive.google.com/file/d/1nSDvXGljFXWiuqMGkMhM5d83Ht10VhH5/view?usp=drivesdk" target="_blank">
-    Human Heart
-  </a>
-  <a href="https://drive.google.com/file/d/1th-wlrmiVOVKjyivVqFAnnoW9CgXOy5j/view?usp=drivesdk" target="_blank">
-    Human Kidney
-  </a>
-  <a href="https://drive.google.com/file/d/1U_PmtIPIycIf4jUT_pt1dgbua6CtOkOP/view?usp=drivesdk" target="_blank">
-    Human brain
-  </a>
+<h2>📐 Diagrams</h2>
 
-  <br><br>
-  <button onclick="goHome()">⬅ Back</button>
+<a href="https://drive.google.com/file/d/1jLbbNwItrxLx6FMST1hlAFTxN5ly_rYE/view?usp=drivesdk" target="_blank">Eukaryotic cell</a>
+
+<a href="https://drive.google.com/file/d/1KtpR8uuZbd_kVf92fopYGNWsJkKOTbm0/view" target="_blank">Human Skeleton</a>
+
+<a href="https://drive.google.com/file/d/1nSDvXGljFXWiuqMGkMhM5d83Ht10VhH5/view?usp=drivesdk" target="_blank">Human Heart</a>
+
+<a href="https://drive.google.com/file/d/1th-wlrmiVOVKjyivVqFAnnoW9CgXOy5j/view?usp=drivesdk" target="_blank">Human Kidney</a>
+
+<a href="https://drive.google.com/file/d/1U_PmtIPIycIf4jUT_pt1dgbua6CtOkOP/view?usp=drivesdk" target="_blank">Human Brain</a>
+
+<br><br>
+
+<button onclick="goHome()">⬅ Back</button>
+
 </div>
 
-  <div id="papers" class="content hidden">
+<!-- PRACTICE PAPERS -->
 
-  <h2>📄 Practice Papers</h2>
+<div class="content hidden" id="papers">
 
-  <!-- CLASS BUTTONS -->
-  <div class="class-buttons">
-    <button onclick="showClass('papers9')">Class 9</button>
-    <button onclick="showClass('papers10')">Class 10</button>
-    <button onclick="showClass('papers11')">Class 11</button>
-    <button onclick="showClass('papers12')">Class 12</button>
-  </div>
+<h2>📄 Practice Papers</h2>
 
-  <!-- PAPERS LIST -->
+<div class="class-buttons">
 
-  <div id="papers9" class="notes-list hidden">
-    <a href="#">Class 9 – Maths Practice Paper</a>
-    <a href="#">Class 9 – Science Practice Paper</a>
-  </div>
+  <button onclick="showClass('papers9')">Class 9</button>
 
-  <div id="papers10" class="notes-list hidden">
-    <a href="#">Class 10 – Maths Board Paper</a>
-    <a href="#">Class 10 – Science Sample Paper</a>
-  </div>
+  <button onclick="showClass('papers10')">Class 10</button>
 
-  <div id="papers11" class="notes-list hidden">
-    <a href="#">Class 11 – Physics Practice Set</a>
-    <a href="#">Class 11 – Maths Practice Paper</a>
-  </div>
+  <button onclick="showClass('papers11')">Class 11</button>
 
-  <div id="papers12" class="notes-list hidden">
-    <a href="#">Class 12 – Physics Board Paper</a>
-    <a href="#">Class 12 – Maths Sample Paper</a>
-  </div>
+  <button onclick="showClass('papers12')">Class 12</button>
 
-  <br>
-  <button onclick="goHome()">⬅ Back to Home</button>
+</div>
 
-  </div>
+<div id="papers9" class="notes-list hidden">
+
+  <a href="#">Class 9 – Maths Practice Paper</a>
+
+  <a href="#">Class 9 – Science Practice Paper</a>
+
+</div>
+
+<div id="papers10" class="notes-list hidden">
+
+  <a href="#">Class 10 – Maths Board Paper</a>
+
+  <a href="#">Class 10 – Science Sample Paper</a>
+
+</div>
+
+<div id="papers11" class="notes-list hidden">
+
+  <a href="#">Class 11 – Physics Practice Set</a>
+
+  <a href="#">Class 11 – Maths Practice Paper</a>
+
+</div>
+
+<div id="papers12" class="notes-list hidden">
+
+  <a href="#">Class 12 – Physics Board Paper</a>
+
+  <a href="#">Class 12 – Maths Sample Paper</a>
+
+</div>
+
+<br>
+
+<button onclick="goHome()">⬅ Back</button>
+
+</div>
 
 <script src="script.js"></script>
-<!-- LOGIN TRANSITION -->
-<div id="loginTransition">
-  <div class="sun-glow"></div>
-</div>
+
 </body>
+
 </html>
