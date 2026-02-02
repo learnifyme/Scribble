@@ -1,184 +1,265 @@
-// ELEMENTS
-const loginPage = document.getElementById("loginPage");
-const homePage = document.getElementById("homePage");
-const nameInput = document.getElementById("nameInput");
-const ageInput = document.getElementById("ageInput");
-const ageValue = document.getElementById("ageValue");
-const profileBox = document.getElementById("profileBox");
-const quoteBox = document.getElementById("quoteBox");
 const canvas = document.getElementById("universe");
-const ctx = canvas.getContext("2d");
-const planetsContainer = document.getElementById("planets");
 
-// AGE SLIDER
+const ctx = canvas.getContext("2d");
+
+canvas.width = innerWidth;
+
+canvas.height = innerHeight;
+
+/* AGE SLIDER */
+
+const ageInput = document.getElementById("ageInput");
+
+const ageValue = document.getElementById("ageValue");
+
 ageInput.oninput = () => ageValue.innerText = ageInput.value;
 
-// QUOTES
-const quotes = [
-  "Mathematics is the music of reason.",
-  "Learning never exhausts the mind.",
-  "Small steps lead to big discoveries.",
-  "Curiosity is the key to innovation."
-];
-let q = 0;
-function rotateQuotes() {
-  quoteBox.innerText = quotes[q];
-  q = (q + 1) % quotes.length;
-  setTimeout(rotateQuotes, 3500);
-}
+/* STAR SYSTEM */
 
-function login() {
-  if (nameInput.value === "") {
-    alert("Enter your name");
-    return;
-  }
+let stars = [];
 
-  const loader = document.getElementById("blackHoleLoader");
-  loader.classList.remove("hidden"); // SHOW loader
+const STAR_COUNT = 180;
 
-  setTimeout(() => {
-    const userName = nameInput.value;
-    const userAge = ageInput.value;
+function createStars(bigBang=false){
 
-    localStorage.setItem("loggedIn", "true");
-    localStorage.setItem("userName", userName);
-    localStorage.setItem("userAge", userAge);
-
-    loginPage.classList.add("hidden");
-    homePage.classList.remove("hidden");
-
-    profileBox.innerHTML = `
-      <b>${userName}</b><br>
-      Age: ${userAge}<br>
-      <button onclick="logout()">Logout</button>
-    `;
-
-    loader.classList.add("hidden"); // HIDE loader
-    rotateQuotes();
-  }, 2800); // matches animation
-}
-}
-function logout() {
-  localStorage.clear();
-  location.reload();
-}
-
-// AUTO LOGIN
-window.onload = ()=>{
-  if(localStorage.getItem("loggedIn")==="true"){
-    const userName = localStorage.getItem("userName");
-    const userAge = localStorage.getItem("userAge");
-    loginPage.classList.add("hidden");
-    homePage.classList.remove("hidden");
-    profileBox.innerHTML = `<b>${userName}</b><br>Age: ${userAge}<br><button onclick="logout()">Logout</button>`;
-    rotateQuotes();
-  }
-}
-
-// PROFILE TOGGLE
-function toggleProfile(){
-  profileBox.classList.toggle("hidden");
-}
-
-// NAVIGATION
-function openSection(id) {
-  homePage.classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
-
-  // re-trigger class buttons animation
-  document.querySelectorAll(".class-buttons button").forEach(btn => {
-    btn.style.animation = "none";
-    btn.offsetHeight;
-    btn.style.animation = "";
-  });
-}
-// SHOW CLASS NOTES (FIXED)
-function showClass(classId) {
-  document.querySelectorAll('.notes-list').forEach(list => {
-    list.classList.add('hidden');
-  });
-
-  const activeClass = document.getElementById(classId);
-  activeClass.classList.remove('hidden');
-
-  // re-trigger animation
-  activeClass.style.animation = "none";
-  activeClass.offsetHeight;
-  activeClass.style.animation = "";
-}
-function goHome(){
-  document.querySelectorAll(".content").forEach(c=>c.classList.add("hidden"));
-  homePage.classList.remove("hidden");
-}
-
-// CHATBOT
-function toggleChat(){ alert("Chatbot coming soon!"); }
-
-// ================= STARS WITH CONSTELLATIONS =================
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let stars=[];
-const STAR_COUNT=120;
-const MAX_DISTANCE=120;
+stars=[];
 
 for(let i=0;i<STAR_COUNT;i++){
-  stars.push({ 
-    x: Math.random()*canvas.width, 
-    y: Math.random()*canvas.height, 
-    vx:(Math.random()-0.5)*0.3, 
-    vy:(Math.random()-0.5)*0.3, 
-    radius: Math.random()*1.5+0.5 
-  });
+
+stars.push({
+
+x: bigBang ? canvas.width/2 : Math.random()*canvas.width,
+
+y: bigBang ? canvas.height/2 : Math.random()*canvas.height,
+
+vx:(Math.random()-0.5)*(bigBang?6:0.3),
+
+vy:(Math.random()-0.5)*(bigBang?6:0.3),
+
+r:Math.random()*1.5+0.5
+
+});
+
 }
 
-function drawStars(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  stars.forEach(s=>{
-    ctx.beginPath();
-    ctx.arc(s.x,s.y,s.radius,0,Math.PI*2);
-    ctx.fillStyle="white";
-    ctx.fill();
-  });
+if(bigBang){
+
+setTimeout(()=>{
+
+stars.forEach(s=>{
+
+s.vx*=0.1;
+
+s.vy*=0.1;
+
+});
+
+},1200);
+
 }
 
-function drawLines(){
-  for(let i=0;i<stars.length;i++){
-    for(let j=i+1;j<stars.length;j++){
-      const dx=stars[i].x-stars[j].x;
-      const dy=stars[i].y-stars[j].y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<MAX_DISTANCE){
-        ctx.beginPath();
-        ctx.strokeStyle=`rgba(255,255,255,${1-dist/MAX_DISTANCE})`;
-        ctx.lineWidth=0.5;
-        ctx.moveTo(stars[i].x,stars[i].y);
-        ctx.lineTo(stars[j].x,stars[j].y);
-        ctx.stroke();
-      }
-    }
-  }
-}
-
-function updateStars(){
-  stars.forEach(s=>{
-    s.x+=s.vx; s.y+=s.vy;
-    if(s.x<0||s.x>canvas.width) s.vx*=-1;
-    if(s.y<0||s.y>canvas.height) s.vy*=-1;
-  });
 }
 
 function animateStars(){
-  drawStars();
-  drawLines();
-  updateStars();
-  requestAnimationFrame(animateStars);
-}
-animateStars();
 
-window.addEventListener("resize",()=>{
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+stars.forEach(s=>{
+
+ctx.beginPath();
+
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+
+ctx.fillStyle="white";
+
+ctx.fill();
+
+s.x+=s.vx;
+
+s.y+=s.vy;
+
+if(s.x<0) s.x=canvas.width;
+
+if(s.x>canvas.width) s.x=0;
+
+if(s.y<0) s.y=canvas.height;
+
+if(s.y>canvas.height) s.y=0;
+
 });
 
-const loader = document.getElementById("blackHoleLoader");
+requestAnimationFrame(animateStars);
+
+}
+
+createStars();
+
+animateStars();
+
+/* LOGIN */
+
+function login(){
+
+const name=document.getElementById("nameInput").value;
+
+if(name===""){alert("Enter your name");return;}
+
+localStorage.setItem("loggedIn","true");
+
+localStorage.setItem("userName",name);
+
+localStorage.setItem("userAge",ageInput.value);
+
+document.getElementById("bubble").classList.add("blast");
+
+setTimeout(()=>{
+
+createStars(true);
+
+document.getElementById("loginPage").classList.add("hidden");
+
+document.getElementById("homePage").classList.remove("hidden");
+
+document.getElementById("profileBox").innerHTML=
+
+`<b>${name}</b><br>
+
+Age: ${ageInput.value}<br>
+
+<button onclick="logout()">Logout</button>`;
+
+rotateQuotes();
+
+},800);
+
+}
+
+function logout(){
+
+localStorage.clear();
+
+location.reload();
+
+}
+
+/* AUTO LOGIN */
+
+window.onload = () => {
+
+  if (localStorage.getItem("loggedIn") === "true") {
+
+    const name = localStorage.getItem("userName");
+
+    const age = localStorage.getItem("userAge");
+
+    document.getElementById("loginPage").classList.add("hidden");
+
+    document.getElementById("homePage").classList.remove("hidden");
+
+    document.getElementById("profileBox").innerHTML = `
+
+      <b>${name}</b><br>
+
+      Age: ${age}<br>
+
+      <button onclick="logout()">Logout</button>
+
+    `;
+
+    rotateQuotes();
+
+  }
+
+};
+
+/* QUOTES */
+
+const quotes=[
+
+"Mathematics is the music of reason.",
+
+"Learning never exhausts the mind.",
+
+"Small steps lead to big discoveries.",
+
+"Curiosity is the key to innovation."
+
+];
+
+let q=0;
+
+function rotateQuotes(){
+
+document.getElementById("quoteBox").innerText=quotes[q];
+
+q=(q+1)%quotes.length;
+
+setTimeout(rotateQuotes,3500);
+
+}
+
+/* NAVIGATION */
+
+function openSection(id){
+
+document.getElementById("homePage").classList.add("hidden");
+
+document.getElementById(id).classList.remove("hidden");
+
+}
+
+function goHome(){
+
+document.querySelectorAll(".content").forEach(c=>c.classList.add("hidden"));
+
+document.getElementById("homePage").classList.remove("hidden");
+
+}
+
+function toggleProfile(){
+
+document.getElementById("profileBox").classList.toggle("hidden");
+
+}
+
+function showClass(id){
+
+document.querySelectorAll(".notes-list").forEach(n=>n.classList.add("hidden"));
+
+document.getElementById(id).classList.remove("hidden");
+
+}
+function logout() {
+
+  // Clear stored login data
+
+  localStorage.removeItem("loggedIn");
+
+  localStorage.removeItem("userName");
+
+  localStorage.removeItem("userAge");
+
+  // Reset UI
+
+  document.getElementById("homePage").classList.add("hidden");
+
+  document.getElementById("loginPage").classList.remove("hidden");
+
+  // Hide profile box
+
+  document.getElementById("profileBox").classList.add("hidden");
+
+  document.getElementById("profileBox").innerHTML = "";
+
+  // Optional: reset inputs
+
+  document.getElementById("nameInput").value = "";
+
+  document.getElementById("ageInput").value = "";
+
+  // Recreate calm background (no big bang)
+
+  createStars(false);
+
+}
+window.logout = logout;
