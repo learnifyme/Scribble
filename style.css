@@ -1,387 +1,285 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+*{
+
+margin:0;
+
+padding:0;
+
+box-sizing:border-box;
+
+font-family:Arial, sans-serif;
+
 }
 
-/* UNIVERSE CANVAS */
-#universe {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -3;
-  background: #000;
+body{
+
+background:black;
+
+overflow:hidden;
+
 }
 
+canvas{
 
-/* LOGIN PAGE */
-.login {
-  height: 100vh;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  position: relative;
-  overflow: hidden;
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+z-index:-2;
+
 }
 
-.login input,
-.login button {
-  padding: 12px;
-  width: 240px;
-  border-radius: 8px;
-  border: none;
+/* LOGIN */
+
+.login{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+color:white;
+
+position:relative;
+
 }
 
-.login button {
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
+input, button{
+
+padding:12px;
+
+margin:8px;
+
+border-radius:8px;
+
+border:none;
+
+width:240px;
+
 }
 
-/* CARTOON CHARACTER */
-.cartoon {
-  position: absolute;
-  right: 40px;
-  bottom: 80px;
-  width: 110px;
-  animation: floaty 3s ease-in-out infinite;
-  pointer-events: none;
+/* BUTTON HOVER */
+
+button{
+
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+
+color:white;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:transform 0.25s ease, box-shadow 0.25s ease;
+
 }
 
-@keyframes floaty {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-25px); }
-  100% { transform: translateY(0); }
+button:hover{
+
+transform:translateY(-6px) scale(1.05);
+
+box-shadow:
+
+0 0 15px rgba(79,172,254,0.8),
+
+0 0 30px rgba(0,242,254,0.6);
+
 }
 
-#loginTransition {
-  position: fixed;
-  left: 50%;
-  bottom: -60vh;              /* start hidden */
-  width: 180vw;
-  height: 35vh;
-  background: radial-gradient(
-    ellipse at bottom,
-    rgba(18, 30, 75, 0.9),
-    #000 75%
-  );
-  border-radius: 100% 100% 0 0;
-  transform: translateX(-50%);
-  z-index: -1;                /* ✅ BEHIND CONTENT */
-  pointer-events: none;
-  opacity: 0;
-  transition:
-    bottom 1.2s ease-in-out,
-    opacity 0.3s ease;
+/* GLOWING BUBBLE */
+
+#bubble{
+
+position:absolute;
+
+width:300px;
+
+height:300px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,#4facfe,transparent 70%);
+
+box-shadow:0 0 150px 60px #4facfe;
+
+animation:pulse 2s infinite alternate;
+
+z-index:-1;
+
 }
 
-/* 🌟 OUTSIDE GLOW */
-#loginTransition::after {
-  content: "";
-  position: absolute;
-  inset: -60px;
-  border-radius: 100% 100% 0 0;
-  box-shadow: 0 0 120px 45px rgba(255, 200, 90, 0.5);
-  z-index: -1;
+@keyframes pulse{
+
+from{transform:scale(0.95);}
+
+to{transform:scale(1.05);}
+
 }
 
-/* ACTIVE STATE */
-#loginTransition.active {
-  bottom: 0;
-  opacity: 1;
-}
-#loginTransition {
-  position: fixed;
-  left: 50%;
-  bottom: -60vh;              /* start hidden */
-  width: 180vw;
-  height: 55vh;
-  background: radial-gradient(
-    ellipse at bottom,
-    rgba(18, 30, 75, 0.9),
-    #000 75%
-  );
-  border-radius: 100% 100% 0 0;
-  transform: translateX(-50%);
-  z-index: -1;                /* ✅ BEHIND CONTENT */
-  pointer-events: none;
-  opacity: 0;
-  transition:
-    bottom 1.2s ease-in-out,
-    opacity 0.3s ease;
+#bubble.blast{
+
+animation:blast 1s forwards;
+
 }
 
-/* 🌟 OUTSIDE GLOW */
-#loginTransition::after {
-  content: "";
-  position: absolute;
-  inset: -60px;
-  border-radius: 100% 100% 0 0;
-  box-shadow: 0 0 120px 45px rgba(255, 200, 90, 0.5);
-  z-index: -1;
+@keyframes blast{
+
+to{
+
+transform:scale(6);
+
+opacity:0;
+
 }
 
-/* ACTIVE STATE */
-#loginTransition.active {
-  bottom: 0;
-  opacity: 1;
 }
 
-/* FULLSCREEN LOADER */
-/* LOADER SCREEN */
-#blackHoleLoader {
-  position: fixed;
-  inset: 0;
-  background: #050505;
-  z-index: 9999;
-  overflow: hidden;
+/* HOME */
+
+.home{
+
+min-height:100vh;
+
+color:white;
+
+text-align:center;
+
+padding-top:50px;
+
 }
 
-/* BLACK HOLE HOLDER */
-.black-hole {
-  position: absolute;
-  top: 50%;
-  left: -30%;
-  transform: translateY(-50%);
-  animation: moveHole 3s ease-in-out forwards;
+.icon{
+
+position:fixed;
+
+font-size:32px;
+
+cursor:pointer;
+
 }
 
-/* COMMON RING STYLE */
-.ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 5px solid rgba(255,255,255,0.95);
-  box-shadow:
-    0 0 25px rgba(255,255,255,0.9),
-    0 0 70px rgba(255,255,255,0.6);
-}
+.profile{top:15px;right:15px;}
 
-/* OUTER RING */
-.ring.outer {
-  width: 170px;
-  height: 170px;
-  animation: spin 6s linear infinite;
-}
+.profile-box{
 
-/* INNER RING */
-.ring.inner {
-  width: 90px;
-  height: 90px;
-  top: 40px;
-  left: 40px;
-  opacity: 0.85;
-  animation: spinReverse 4s linear infinite;
-}
+position:fixed;
 
-/* LIGHT BEAM */
-.beam {
-  position: absolute;
-  top: 50%;
-  left: -250px;
-  width: 650px;
-  height: 6px;
-  background: linear-gradient(to right, transparent, white, transparent);
-  transform: translateY(-50%);
-  box-shadow: 0 0 45px rgba(255,255,255,0.9);
-}
+top:60px;
 
-/* MOVEMENT */
-@keyframes moveHole {
-  0% {
-    left: -30%;
-    opacity: 0;
-  }
-  20% { opacity: 1; }
-  50% {
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  100% {
-    left: 120%;
-    opacity: 0;
-  }
-}
+right:15px;
 
-/* RING ROTATIONS */
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-@keyframes spinReverse {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
-}
+background:white;
 
-/* HOME PAGE */
-.home {
-  min-height: 100vh;
-  color: white;
-  position: relative;
-  z-index: 1;
-}
+color:black;
 
-/* ICONS */
-.icon {
-  position: fixed;
-  font-size: 32px;
-  cursor: pointer;
-  z-index: 10;
-}
+padding:12px;
 
-.profile { top: 15px; right: 15px; }
-.chatbot { bottom: 15px; right: 15px; }
+border-radius:10px;
 
-/* PROFILE BOX */
-.profile-box {
-  position: fixed;
-  top: 60px;
-  right: 15px;
-  background: white;
-  color: black;
-  padding: 12px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-}
-
-.profile-box button {
-  margin-top: 10px;
-  background: red;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
-  cursor: pointer;
 }
 
 /* QUOTES */
-.quote {
-  text-align: center;
-  margin-top: 50px;
-  font-size: 22px;
-  animation: fade 1.5s infinite alternate;
+
+.quote{
+
+margin-top:40px;
+
+font-size:22px;
+
+animation:fade 2s infinite alternate;
+
 }
-@keyframes fade {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
+
+@keyframes fade{
+
+from{opacity:0.6;}
+
+to{opacity:1;}
+
 }
 
 /* MENU */
-.menu {
-  height: 70vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.vertical-menu {
-  flex-direction: column;
-  gap: 20px;
-}
-.menu button {
-  padding: 20px 40px;
-  font-size: 18px;
-  border-radius: 15px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: white;
-  transition: transform 0.3s;
-}
-.menu button:hover {
-  transform: scale(1.08);
+
+.menu{
+
+margin-top:60px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+align-items:center;
+
 }
 
-/* NOTES & DIAGRAMS */
-.content {
-  min-height: 100vh;
-  padding: 40px;
-  background: rgba(255,255,255,0.95);
+/* CONTENT */
+
+.content{
+
+background:white;
+
+color:black;
+
+min-height:100vh;
+
+padding:30px;
+
 }
 
-.login,
-.home,
-.content {
-  position: relative;
-  z-index: 2;   /* 👈 keeps content ABOVE semicircle */
+.content a{
+
+display:block;
+
+margin:12px 0;
+
+padding:10px;
+
+background:#f5f5f5;
+
+border-radius:8px;
+
+text-decoration:none;
+
+color:black;
+
 }
 
-.content a {
-  display: block;
-  margin: 15px 0;
-  font-size: 18px;
-  padding: 12px;
-  background: white;
-  border-radius: 8px;
-  color: #333;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+/* CLASS BUTTONS */
+
+.class-buttons{
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+margin-bottom:20px;
+
 }
 
-/* HIDDEN UTILITY */
-.hidden { display: none; }
+.class-buttons button:hover{
 
+transform:translateY(-8px) scale(1.08);
 
-/* 🎓 CLASS BUTTON ANIMATION */
-.class-buttons {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+box-shadow:
+
+0 0 20px rgba(79,172,254,0.9),
+
+0 0 40px rgba(79,172,254,0.6);
+
 }
 
-.class-buttons button {
-  padding: 10px 18px;
-  border-radius: 20px;
-  border: none;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: classBtnIn 0.6s ease forwards;
-}
-
-.class-buttons button:nth-child(1) { animation-delay: 0.1s; }
-.class-buttons button:nth-child(2) { animation-delay: 0.25s; }
-.class-buttons button:nth-child(3) { animation-delay: 0.4s; }
-.class-buttons button:nth-child(4) { animation-delay: 0.55s; }
-
-.class-buttons button:hover {
-  transform: scale(1.12);
-  box-shadow: 0 0 15px rgba(79,172,254,0.8);
-}
-
-/* Button animation */
-@keyframes classBtnIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* 📄 NOTES APPEAR ANIMATION */
-.notes-list {
-  animation: notesFade 0.6s ease;
-}
-
-@keyframes notesFade {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+.hidden{display:none;}
