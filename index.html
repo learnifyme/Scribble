@@ -1,27 +1,18 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <title>Learning Portal</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<canvas id="universe"></canvas>
+<canvas id="starCanvas" class="hidden"></canvas>
 
 <!-- LOGIN PAGE -->
-
 <div class="login" id="loginPage">
-
   <div id="bubble"></div>
 
   <h1>Welcome</h1>
@@ -29,115 +20,78 @@
   <input type="text" id="nameInput" placeholder="Your Name">
 
   <label>Age: <span id="ageValue">18</span></label>
-
   <input type="range" min="1" max="100" value="18" id="ageInput">
 
   <button onclick="login()">Enter</button>
-
 </div>
 
 <!-- HOME PAGE -->
-
 <div class="home hidden" id="homePage">
 
   <div class="icon profile" onclick="toggleProfile()">👤</div>
-
   <div class="profile-box hidden" id="profileBox"></div>
 
   <div class="quote" id="quoteBox"></div>
 
   <div class="menu vertical-menu">
-
     <button onclick="openSection('notes')">📘 Notes</button>
-
     <button onclick="openSection('diagrams')">📐 Diagrams</button>
-
     <button onclick="openSection('papers')">📄 Practice Papers</button>
-
   </div>
 
 </div>
 
 <!-- NOTES -->
-
 <div class="content hidden" id="notes">
-
 <h2>📘 Notes</h2>
 
 <div class="class-buttons">
-
   <button onclick="showClass('class9')">Class 9</button>
-
   <button onclick="showClass('class10')">Class 10</button>
-
   <button onclick="showClass('class11')">Class 11</button>
-
   <button onclick="showClass('class12')">Class 12</button>
-
 </div>
 
 <div id="class9" class="notes-list hidden">
-
-  <h3>Class 9 Notes</h3>
-
-  <a href="#">very soon it will be available</a>
-
-  <a href="#">very soon it will be available</a>
-
+<h3>Class 9 Notes</h3>
+<a href="#">very soon it will be available</a>
+<a href="#">very soon it will be available</a>
 </div>
 
 <div id="class10" class="notes-list hidden">
-
-  <h3>Class 10 Notes</h3>
-
-  <a href="#">very soon it will be available</a>
-
-  <a href="#">very soon it will be available</a>
-
+<h3>Class 10 Notes</h3>
+<a href="#">very soon it will be available</a>
+<a href="#">very soon it will be available</a>
 </div>
 
 <div id="class11" class="notes-list hidden">
+<h3>Class 11 Notes</h3>
 
-  <h3>Class 11 Notes</h3>
+<a href="https://drive.google.com/file/d/1SKQ2dN2ja_yQxJtIfFHlhOsVNWUzgGgW/view?usp=drivesdk" target="_blank">
+Thermodynamics mind map
+</a>
 
-  <a href="https://drive.google.com/file/d/1SKQ2dN2ja_yQxJtIfFHlhOsVNWUzgGgW/view?usp=drivesdk" target="_blank">
+<a href="https://drive.google.com/file/d/1zah9Errdk-s64R-wVvA7sz6Avpr2X4-R/view?usp=drivesdk" target="_blank">
+Redox reactions mind map
+</a>
 
-    Thermodynamics mind map
-
-  </a>
-
-  <a href="https://drive.google.com/file/d/1zah9Errdk-s64R-wVvA7sz6Avpr2X4-R/view?usp=drivesdk" target="_blank">
-
-    Redox reactions mind map
-
-  </a>
-
-  <a href="https://drive.google.com/file/d/1WEElCNmVCkPfdRm6rlpeOBQh-0Ic-BZ7/view?usp=drivesdk" target="_blank">
-
-    NEWTONS LAWS OF MOTION
-
-  </a>
+<a href="https://drive.google.com/file/d/1WEElCNmVCkPfdRm6rlpeOBQh-0Ic-BZ7/view?usp=drivesdk" target="_blank">
+NEWTONS LAWS OF MOTION
+</a>
 
 </div>
 
 <div id="class12" class="notes-list hidden">
-
-  <h3>Class 12 Notes</h3>
-
-  <a href="#">very soon it will be available</a>
-
-  <a href="#">very soon it will be available</a>
-
+<h3>Class 12 Notes</h3>
+<a href="#">very soon it will be available</a>
+<a href="#">very soon it will be available</a>
 </div>
 
 <button onclick="goHome()">⬅ Back</button>
-
 </div>
 
 <!-- DIAGRAMS -->
-
 <div class="content hidden" id="diagrams">
-
 <h2>📐 Diagrams</h2>
 
 <a href="https://drive.google.com/file/d/1jLbbNwItrxLx6FMST1hlAFTxN5ly_rYE/view?usp=drivesdk" target="_blank">Eukaryotic cell</a>
@@ -151,69 +105,45 @@
 <a href="https://drive.google.com/file/d/1U_PmtIPIycIf4jUT_pt1dgbua6CtOkOP/view?usp=drivesdk" target="_blank">Human Brain</a>
 
 <br><br>
-
 <button onclick="goHome()">⬅ Back</button>
-
 </div>
 
-<!-- PRACTICE PAPERS -->
-
+<!-- PAPERS -->
 <div class="content hidden" id="papers">
-
 <h2>📄 Practice Papers</h2>
 
 <div class="class-buttons">
-
-  <button onclick="showClass('papers9')">Class 9</button>
-
-  <button onclick="showClass('papers10')">Class 10</button>
-
-  <button onclick="showClass('papers11')">Class 11</button>
-
-  <button onclick="showClass('papers12')">Class 12</button>
-
+<button onclick="showClass('papers9')">Class 9</button>
+<button onclick="showClass('papers10')">Class 10</button>
+<button onclick="showClass('papers11')">Class 11</button>
+<button onclick="showClass('papers12')">Class 12</button>
 </div>
 
 <div id="papers9" class="notes-list hidden">
-
-  <a href="#">Class 9 – Maths Practice Paper</a>
-
-  <a href="#">Class 9 – Science Practice Paper</a>
-
+<a href="#">Class 9 – Maths Practice Paper</a>
+<a href="#">Class 9 – Science Practice Paper</a>
 </div>
 
 <div id="papers10" class="notes-list hidden">
-
-  <a href="#">Class 10 – Maths Board Paper</a>
-
-  <a href="#">Class 10 – Science Sample Paper</a>
-
+<a href="#">Class 10 – Maths Board Paper</a>
+<a href="#">Class 10 – Science Sample Paper</a>
 </div>
 
 <div id="papers11" class="notes-list hidden">
-
-  <a href="#">Class 11 – Physics Practice Set</a>
-
-  <a href="#">Class 11 – Maths Practice Paper</a>
-
+<a href="#">Class 11 – Physics Practice Set</a>
+<a href="#">Class 11 – Maths Practice Paper</a>
 </div>
 
 <div id="papers12" class="notes-list hidden">
-
-  <a href="#">Class 12 – Physics Board Paper</a>
-
-  <a href="#">Class 12 – Maths Sample Paper</a>
-
+<a href="#">Class 12 – Physics Board Paper</a>
+<a href="#">Class 12 – Maths Sample Paper</a>
 </div>
 
 <br>
-
 <button onclick="goHome()">⬅ Back</button>
-
 </div>
 
 <script src="script.js"></script>
 
 </body>
-
 </html>
